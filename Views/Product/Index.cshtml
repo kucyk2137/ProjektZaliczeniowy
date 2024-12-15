@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Projekt.Models.Product>
+
+
+<h1>Lista Produktów</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>Opis</th>
+            <th>Cena</th>
+            <th>Podgląd przedmiotu</th>
+            <th>Dane sprzedającego</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+         @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Nazwa</td>
+                <td>@product.Opis</td>
+                <td>@product.Cena zł</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(product.ImagePath))
+                    {
+                        <img src="/images/@product.ImagePath" alt="@product.Nazwa" style="width: 100px; height: auto;" />
+                    }
+                    else
+                    {
+                        <p>Brak zdjęcia</p>
+                    }
+                    </td>
+                    <td>
+                    @if (product.Użytkownik != null && product.UserProfile != null)
+                    {
+                        <p>@product.Użytkownik.UserName</p>  <!-- Nazwa użytkownika (login) -->
+                        <p>@product.Użytkownik.Email</p>     <!-- E-mail użytkownika -->
+                        <p>@product.UserProfile.Imię @product.UserProfile.Nazwisko</p>  <!-- Imię i nazwisko użytkownika -->
+                    }
+                    else
+                    {
+                        <p>Brak danych sprzedającego</p>
+                    }
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

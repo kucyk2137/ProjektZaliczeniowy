@@ -1,0 +1,12 @@
+﻿@model Projekt.Models.UserProfile
+
+<h2>Twoje dane</h2>
+
+<p><strong>Imię:</strong> @Model.Imię</p>
+<p><strong>Nazwisko:</strong> @Model.Nazwisko</p>
+<p><strong>Adres:</strong> @Model.Adres</p>
+<p><strong>Kod pocztowy:</strong> @Model.KodPocztowy</p>
+<p><strong>Numer telefonu:</strong> @Model.PhoneNumber</p>
+
+<a asp-action="Edit" class="btn btn-primary">Edytuj dane</a>
+

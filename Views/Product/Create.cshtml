@@ -1,0 +1,32 @@
+﻿@model Projekt.Models.Product
+
+<h1>Dodaj produkt</h1>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="Nazwa">Nazwa</label>
+        <input asp-for="Nazwa" class="form-control" />
+        <span asp-validation-for="Nazwa" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Opis">Opis</label>
+        <textarea asp-for="Opis" class="form-control"></textarea>
+        <span asp-validation-for="Opis" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Cena">Cena</label>
+        <input asp-for="Cena" type="number" class="form-control" />
+        <span asp-validation-for="Cena" class="text-danger"></span>
+    </div>
+    <div class="form-group" required>
+        <label for="Zdjęcie">Zdjęcie</label>
+        <input asp-for="Zdjęcie" type="file" class="form-control" />
+        <span asp-validation-for="Zdjęcie" class="text-danger" ></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Dodaj</button>
+    <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

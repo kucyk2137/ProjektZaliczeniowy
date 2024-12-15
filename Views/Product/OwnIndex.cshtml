@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Projekt.Models.Product>
+
+@{
+    ViewData["Title"] = "Twoje Ogłoszenia";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Dodaj nowe ogłoszenie</a>
+</p>
+
+@if (!Model.Any())
+{
+    <p>Nie dodałeś jeszcze żadnych ogłoszeń.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Opis</th>
+                <th>Cena</th>
+                <th>Zdjęcie</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Nazwa</td>
+                    <td>@product.Opis</td>
+                    <td>@product.Cena.ToString("C")</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(product.ImagePath))
+                        {
+                            <img src="~/images/@product.ImagePath" alt="@product.Nazwa" width="100" />
+                        }
+                        else
+                        {
+                            <span>Brak zdjęcia</span>
+                        }
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-primary">Edytuj</a>
+                        <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger">Usuń</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
